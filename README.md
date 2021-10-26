@@ -1,7 +1,6 @@
 ## Sistema de Moeda Estudantil
 <p style="text-align: justify" >Pretende-se desenvolver um sistema para estimular o reconhecimento do mérito estudantil através de uma moeda virtual. Essa moeda pode ser distribuída por professores aos seus alunos e trocada pelos alunos por produtos e descontos em empresas parceiras. Após a análise inicial de requisitos do sistema, foram levantadas as seguintes informações:</p>
 
- 
 
 ### Descrição do Sistema:
 <div style="text-align: justify">
@@ -27,10 +26,9 @@ Para cadastrar uma vantagem, a empresa parceira deve adicionar também uma descr
 Ao resgatar uma vantagem, o aluno deve ter o valor descontado do seu saldo. Um email de cupom deve ser enviado para que ele utilize na troca presencial. Um email também deve ser enviado ao parceiro, para que ele possa conferir a troca. Ambos os emails devem incluir um código gerado pelo sistema, a fim de facilitar o processo de conferência.
 
 Por fim, alunos, professores e empresas parceiras precisam ter um login e uma senha cadastrados para acessar o sistema. Em todos os casos, um processo de autenticação é necessário para realização dos requisitos.
+</div>
 
- 
-
-###Apresentação Final:
+### Apresentação Final:
 
 Ao final da última sprint (Sprint 03), os alunos deverão apresentar o protótipo produzido para a primeira release, comparando-os com os modelos descritos inicialmente, bem como apresentando as modificações inseridas para o funcionamento adequado do software (conforme a especificação anterior). Além disso, ao final da Sprint 03, cada grupo deverá apresentar um tutorial das tecnologias escolhidas para desenvolver o sistema. A ideia é promovermos um salão de tecnologias na aula. Cada apresentação deve ter 25-30 min de duração. Ela fará parte da especificação da Sprint 03.
 
@@ -48,5 +46,3 @@ O sistema deverá ser desenvolvido utilizando arquitetura MVC, e atendendo aos r
 - Lab04S02: TBD.
 
 - Lab04S03: TBD.
-
-<div>

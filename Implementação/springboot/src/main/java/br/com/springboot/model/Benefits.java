@@ -30,5 +30,5 @@ public class Benefits {
     private String name;
     private int value;
     private String description;
-    private String urlPhoto;
+    private String url_photo;
 }

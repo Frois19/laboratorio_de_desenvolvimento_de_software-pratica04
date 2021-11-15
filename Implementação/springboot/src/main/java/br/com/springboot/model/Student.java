@@ -18,12 +18,14 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table
-public class Student extends User{
-    
+public class Student{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+    private String password;
+    @Column(unique = true)
+    private String login;
+
     private String name;
     @Column(unique = true)
     private String CPF;
@@ -31,5 +33,5 @@ public class Student extends User{
     private String adress;
     private String email;
     private String course;
-    private Long univeristy_id;
+    private Long id_univeristy;
 }

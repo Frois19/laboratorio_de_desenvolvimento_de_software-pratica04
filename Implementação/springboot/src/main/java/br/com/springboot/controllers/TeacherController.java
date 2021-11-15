@@ -1,9 +1,12 @@
 package br.com.springboot.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,20 +37,40 @@ public class TeacherController {
     private TeacherUniversityRepository teacherUniversityRepository;
 
     @PostMapping()
-    public Teacher postTeacher(@RequestBody Teacher teacher) {
+    public ResponseEntity<Teacher> postTeacher(@RequestBody Teacher teacher) {
+        if (teacher.getLogin() != null) {
+            Teacher response = this.teacherRepository.save(teacher);
 
-        this.teacherRepository.save(teacher);
-        Optional<University> requestFind = this.universityRepository.findById(teacher.getUniversity_id());
+            Optional<University> requestFind = this.universityRepository.findById(teacher.getId_univeristy());
 
-        if (requestFind.isPresent()) {
+            if (requestFind.isPresent()) {
+                TeacherUniveristy teacherUniveristy = new TeacherUniveristy();
 
-            TeacherUniveristy teacherUniveristy = new TeacherUniveristy();
-            teacherUniveristy.setTeacher_id(teacher.getId());
-            teacherUniveristy.setUniversity_id(teacher.getUniversity_id());
-            this.teacherUniversityRepository.save(teacherUniveristy);
-        
+                teacherUniveristy.setId_teacher(response.getId());
+                teacherUniveristy.setId_univeristy(teacher.getId_univeristy());
+
+                this.teacherUniversityRepository.save(teacherUniveristy);
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return null;
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Optional<Teacher>> login(@RequestBody Teacher teacher) {
+
+        List<Teacher> teachers = new ArrayList<>();
+        teachers = this.teacherRepository.findAll();
+
+        Optional<Teacher> matchingObject = teachers.stream()
+                .filter(p -> p.getLogin().equals(teacher.getLogin()) && p.getPassword().equals(teacher.getPassword()))
+                .findFirst();
+
+        if (matchingObject.isPresent()) {
+            return new ResponseEntity<Optional<Teacher>>(matchingObject, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/{id}")

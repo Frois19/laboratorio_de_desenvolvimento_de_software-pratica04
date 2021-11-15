@@ -12,22 +12,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table
-public class Teacher extends User{
-    
+public class Teacher {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+    private String password;
+    @Column(unique = true)
+    private String login;
+
     private String name;
     @Column(unique = true)
     private String CPF;
     private String department;
-    private Long university_id;
+    private Long id_univeristy;
 }

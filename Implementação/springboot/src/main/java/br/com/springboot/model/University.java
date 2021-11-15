@@ -19,13 +19,16 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table
-public class University extends User {
+public class University {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String password;
+    @Column(unique = true)
+    private String login;
+
     
     private String name;
-    @Column(unique = true)
     private String CNPJ;
 }

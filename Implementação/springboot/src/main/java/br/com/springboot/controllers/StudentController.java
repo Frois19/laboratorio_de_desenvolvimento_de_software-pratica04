@@ -1,9 +1,12 @@
 package br.com.springboot.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,19 +37,39 @@ public class StudentController {
     private StudentUniversityRepository studentUniversityRepository;
 
     @PostMapping()
-    public Student postStudent(@RequestBody Student student) {
-        this.studentRepository.save(student);
-        Optional<University> requestFind = this.universityRepository.findById(student.getUniveristy_id());
+    public ResponseEntity<Student> postStudent(@RequestBody Student student) {
+        Student response = this.studentRepository.save(student);
+
+        Optional<University> requestFind = this.universityRepository.findById(student.getId_univeristy());
         
         if (requestFind.isPresent()) {
 
             StudentUniversity studentUniveristy = new StudentUniversity();
-            studentUniveristy.setStudent_id(student.getId());
-            studentUniveristy.setUniversity_id(student.getUniveristy_id());
+
+            studentUniveristy.setId_student(response.getId());
+            studentUniveristy.setId_univeristy(student.getId_univeristy());
+
             this.studentUniversityRepository.save(studentUniveristy);
+            return new ResponseEntity<>(HttpStatus.OK);
         
         }
-        return null;
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @PostMapping("/login") 
+    public ResponseEntity<Optional<Student>> login(@RequestBody Student student) {
+
+        List<Student> students =  new ArrayList<>();
+        students = this.studentRepository.findAll();
+
+        Optional<Student> matchingObject = students.stream().
+        filter(p -> p.getLogin().equals(student.getLogin()) && p.getPassword().equals(student.getPassword())).
+        findFirst();
+        
+        if(matchingObject.isPresent()){
+            return new ResponseEntity<Optional<Student>>(matchingObject, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/{id}")

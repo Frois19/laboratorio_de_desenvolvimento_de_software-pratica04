@@ -21,12 +21,15 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table
-public class Company extends User {
-    
+public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+    private String password;
+    @Column(unique = true)
+    private String login;
+
+
     @Column(unique = true)
     private String name;
     private String CNPJ;

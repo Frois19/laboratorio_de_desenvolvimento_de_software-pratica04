@@ -23,6 +23,6 @@ public class TeacherUniveristy {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private Long teacher_id;
-    private Long university_id;
+    private Long id_teacher;
+    private Long id_univeristy;
 }

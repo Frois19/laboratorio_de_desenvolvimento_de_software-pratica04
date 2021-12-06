@@ -1,0 +1,110 @@
+#page-auth {
+    display: flex;
+    align-items: stretch;
+    height: 100vh;
+  
+    aside {
+
+      flex: 9;
+      color: #FFF;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      img{
+        width: 100%;
+        height: 100%;
+      }
+  
+      strong {
+        font: 700 36px 'Poppins', sans-serif;
+        line-height: 42px;
+        margin-top: 16px;
+      }
+  
+      p {
+        font-size: 24px;
+        line-height: 32px;
+        margin-top: 16px;
+        color: #f8f8f8;
+      }
+    }
+  
+    main {
+      flex: 8;
+  
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  
+      .main-content {
+        flex-direction: column;
+        width: 100%;
+        max-width: 440px;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+    
+        > img {
+          max-width: 200px;
+          align-self: center;
+        }
+    
+        form {
+          margin-top: 60px;
+          input {
+            height: 50px;
+            border-radius: 20px;
+            padding: 0 16px;
+            background: #fff;
+            border: 1px solid #a8a8b3;
+            margin-top: 30px;
+          }
+        }
+    
+        button {
+          justify-content: center;
+          align-items: center;
+          max-width: 320px;
+          height: 40px;
+          border-radius: 20px;
+          margin-top: 30px;
+          background-color: #403325;
+          color: #fff;
+        }
+    
+        button,
+        input {
+          width: 100%;
+        }
+
+        .separator{
+          font-size: 14px;
+          color: #a8a8b3;
+  
+          margin:32px 0;
+          display: flex;
+          align-items: center;
+  
+  
+          &::before{
+              content: '';
+              flex: 1;
+              height: 1px;
+              background: #a8a8b3;
+              margin-right: 16px;
+          }
+  
+          &::after{
+              content: '';
+              flex: 1;
+              height: 1px;
+              background: #a8a8b3;
+              margin-left: 16px;
+          }
+        }
+      }
+    }
+}
